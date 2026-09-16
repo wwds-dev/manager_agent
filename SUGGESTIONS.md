@@ -8,6 +8,5 @@ Status: `IDEA` · `CONSIDERING` · `PLANNED` · `DONE` · `REJECTED`
 
 | # | Suggestion | Category | Effort | Status |
 |---|---|---|---|---|
-
-No open suggestions yet — see sentinel_fork's own SUGGESTIONS.md for ideas that
-are still shared across agents rather than specific to Forge.
+| 1 | Dry-run a generated agent in a sandbox before writing any file | testing | M | IDEA |
+| 2 | Diff a regenerated scaffold against the reviewed one, so a re-run shows what changed | design | S | IDEA |

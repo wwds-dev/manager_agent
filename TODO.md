@@ -9,8 +9,6 @@
 
 ## v1 — current
 
-No items yet. Forge's own backlog was split out of sentinel_fork's shared
-TODO.md on 2026-09-14 (see that project's TODO.md/SUGGESTIONS.md for the still
-mostly-shared cross-cutting work — request-guard, main.py refactor, GUI system
-— that touches every agent, Forge included, rather than one specifically).
-Add items here going forward as Forge-specific work comes up.
+- [ ] `P1` `testing` `@ai` Prove a generated scaffold actually imports and instantiates. Forge writes a Python draft and inactive registry rows, and nothing checks that the draft is valid before a human is asked to review it — a scaffold that does not import wastes the review rather than failing fast.
+- [ ] `P2` `security` `@ai` Validate the LLM's JSON spec before it becomes code. The spec drives a file write and DB inserts; a schema check (required fields, allowed provider names, no path traversal in the module name) belongs between the model and the filesystem.
+- [ ] `P2` `docs` `@ai` Document the promotion path. Rows are inserted inactive on purpose, but nothing states what a human must verify before flipping one active, so "deliberately integrate" has no checklist behind it.
