@@ -41,11 +41,22 @@ class ManagerAgent:
     def parse_spec(self, response: str) -> dict | None:
         # Strip markdown fences if present
         text = re.sub(r"```(?:json)?", "", response).strip()
-        # Find first {...} block
-        match = re.search(r"\{.*\}", text, re.DOTALL)
-        if not match:
-            return None
-        try:
-            return json.loads(match.group())
-        except json.JSONDecodeError:
-            return None
+        # Decode the first complete JSON object. A greedy r"\{.*\}" match ran to
+        # the LAST '}', so trailing prose containing a brace made json.loads fail
+        # and discarded an otherwise-valid leading spec. raw_decode reads one
+        # value from the first '{' and ignores whatever follows.
+        # Try raw_decode at each '{' in turn: if the model prepends prose that
+        # contains a brace, decoding at that brace fails, so advance to the next
+        # one rather than giving up on an otherwise-valid later object.
+        decoder = json.JSONDecoder()
+        start = text.find("{")
+        while start != -1:
+            try:
+                obj, _ = decoder.raw_decode(text[start:])
+            except json.JSONDecodeError:
+                start = text.find("{", start + 1)
+                continue
+            if isinstance(obj, dict):
+                return obj
+            start = text.find("{", start + 1)
+        return None
