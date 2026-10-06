@@ -1,6 +1,6 @@
 # FORGE — Agent factory
 
-_One of Sentinel's built-in agents (`~/Documents/lab/active/sentinel_fork/agents/manager_agent/`). Split out into its own project on 2026-09-14 — see the parent project's README.md for how Sentinel's agent roster fits together._
+_One of Sentinel's built-in agents (`~/Documents/lab/active/sentinel/agents/manager_agent/`). Split out into its own project on 2026-09-14 — see the parent project's README.md for how Sentinel's agent roster fits together._
 
 `key: manager` · class: `agents/manager_agent/__init__.py → ManagerAgent` · factory: `services/agent_factory.py → AgentFactory` · panel: `ui/panels/manager.py → ManagerPanel`
 
